@@ -11,22 +11,24 @@ const Todos=()=>{
     return(
         <>
         <div className="main-container">
-            <h1>My todo list</h1>
+            <h1 id="todo-heading">My todo list</h1>
+            <div>
             <input id="new-task" type="text" placeholder="add new tasks" value={todo}
             onChange={(e)=>setTodo(e.target.value)}
             />
-            <button onClick={()=>dispatch(AddTodo(todo),setTodo(""))}>add</button>
+            <button id="add-new-btn" onClick={()=>dispatch(AddTodo(todo),setTodo(""))}>Add</button>
+            </div>
             <div className="showitems">
                 {lists.map(ele=>{
                     return(
-                        <div key={ele.id}>
-                            <p>{ele.data}</p><i className="fa fa-trash-o" aria-hidden="true" 
+                        <div className="task-box" key={ele.id}>
+                            <p className="todo-item">{ele.data}</p><i id="delete-btn" className="fa fa-trash-o" aria-hidden="true" 
                             onClick={()=>dispatch(DeleteOne(ele.id))}></i>
                         </div>
                     )
                 })}
             </div>
-            <button onClick={()=>dispatch(ClearAll)} id="clear-all">Clear All</button>
+            <button onClick={()=>dispatch(ClearAll())} id="clear-all">Clear All</button>
         </div>
         </>
     )
